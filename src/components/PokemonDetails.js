@@ -1,17 +1,25 @@
 import React from 'react';
-import './MoreInfo.css';
+import './PokemonDetails.css';
 
-function MoreInfo(props) {
+function PokemonDetails(props) {
   const idPokemon = parseInt(props.match.params.id);
   const pokemon = props.pokemons.find((el) => el.id === idPokemon);
-  const { name, type, averageWeight, image } = pokemon;
+  const { name, type, averageWeight, image, summary, foundAt } = pokemon;
+  const { location, map } = foundAt[0];
   return (
-    <div className="moreinfo">
+    <div className="pokemonDetails">
       <div>
         <p>{name}</p>
         <p>{type}</p>
         <p>
           Average weight: {`${averageWeight.value} ${averageWeight.measurementUnit}`}
+        </p>
+        <p>
+          Sumary: {summary}
+        </p>
+        <p>
+          Found At: {location}
+          Map: <img src={map} alt="teste"/>
         </p>
       </div>
       <img src={image} alt={`${name} sprite`} />
@@ -19,4 +27,4 @@ function MoreInfo(props) {
   );
 }
 
-export default MoreInfo;
+export default PokemonDetails;
